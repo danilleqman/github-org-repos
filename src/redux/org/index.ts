@@ -9,19 +9,19 @@ const orgSlice = createSlice({
     page: 1,
   },
   reducers: {
-    setOrg(state: any, action: any) {
+    setOrg(state, action) {
       const { payload } = action;
       state.org = payload;
     },
-    setRepos(state: any, action: any) {
+    setRepos(state, action) {
       const { payload } = action;
       state.repos = payload;
     },
-    setOrgInfo(state: any, action: any) {
+    setOrgInfo(state, action) {
       const { payload } = action;
       state.orgInfo = payload;
     },
-    setPage(state: any, action: any) {
+    setPage(state, action) {
       const { payload } = action;
       state.page = payload;
     },

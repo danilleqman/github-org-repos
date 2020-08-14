@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getOrgInfoSelector,
   getPageSelector,
   getReposSelector,
-  getOrgInfoSelector,
 } from "../../redux/org/selectors";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -11,18 +11,25 @@ import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Pagination from "@material-ui/lab/Pagination";
-import { getLoaderSelector } from "../../redux/loading/selectors";
+import {
+  isErrorSelector,
+  isLoaderSelector,
+} from "../../redux/loading/selectors";
 import { fetchRepos, setPage } from "../../redux/org";
 
 export const CardRepos = () => {
   const dispatch = useDispatch();
   const repos = useSelector(getReposSelector);
-  const loading = useSelector(getLoaderSelector);
+  const loading = useSelector(isLoaderSelector);
   const page = useSelector(getPageSelector);
   const orgInfo = useSelector(getOrgInfoSelector);
+  const error = useSelector(isErrorSelector);
 
   if (loading) {
     return <LinearProgress />;
+  }
+  if (error) {
+    return <></>;
   }
 
   if (repos.length) {

@@ -6,10 +6,12 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import { getOrgInfoSelector } from "../../redux/org/selectors";
+import { isErrorSelector } from "../../redux/loading/selectors";
 
 export const InputOrg = () => {
   const dispatch = useDispatch();
   const orgInfo = useSelector(getOrgInfoSelector);
+  const error = useSelector(isErrorSelector);
 
   return (
     <Card>
@@ -38,20 +40,26 @@ export const InputOrg = () => {
             Show repos
           </Button>
         </Grid>
-        {orgInfo.blog ? (
-          <Grid item xs={12}>
-            <img
-              src={orgInfo.avatar_url}
-              style={{ width: "200px" }}
-              alt={"img"}
-            />
-            <p> {orgInfo.description}</p>
-            <p>
-              Blog: <a href={orgInfo.blog}>{orgInfo.blog}</a>
-            </p>
-          </Grid>
+        {!error ? (
+          orgInfo.blog ? (
+            <Grid item xs={12}>
+              <img
+                src={orgInfo.avatar_url}
+                style={{ width: "200px" }}
+                alt={"img"}
+              />
+              <p> {orgInfo.description}</p>
+              <p>
+                Blog: <a href={orgInfo.blog}>{orgInfo.blog}</a>
+              </p>
+            </Grid>
+          ) : (
+            <></>
+          )
         ) : (
-          <></>
+          <div style={{ margin: "10px", color: "red" }}>
+            There is no such organization
+          </div>
         )}
       </Grid>
     </Card>

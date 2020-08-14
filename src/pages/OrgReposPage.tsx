@@ -10,7 +10,7 @@ export const OrgReposPage = () => {
       <Grid container spacing={3}>
         <Grid item md={3} xs={12}>
           <InputOrg />
-        </Grid>{" "}
+        </Grid>
         <Grid item md={6} xs={12}>
           <CardRepos />
         </Grid>

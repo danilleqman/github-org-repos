@@ -4,17 +4,29 @@ const loaderSlice = createSlice({
   name: "loader",
   initialState: {
     loader: false,
+    error: false,
   },
   reducers: {
-    showLoader(state: any) {
+    showLoader(state) {
       state.loader = true;
     },
-    hideLoader(state: any) {
+    hideLoader(state) {
       state.loader = false;
+    },
+    setError(state) {
+      state.error = true;
+    },
+    noError(state) {
+      state.error = false;
     },
   },
 });
 
-export const { hideLoader, showLoader } = loaderSlice.actions;
+export const {
+  hideLoader,
+  showLoader,
+  setError,
+  noError,
+} = loaderSlice.actions;
 
 export default loaderSlice.reducer;
