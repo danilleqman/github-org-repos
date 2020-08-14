@@ -31,4 +31,4 @@ redux/
   selectors.ts      // Селекторы
  sagas.ts           // Root для sagas
  store.ts           // Root для reducers
- ``
+ ```
